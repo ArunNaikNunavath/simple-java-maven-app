@@ -35,13 +35,14 @@ pipeline {
         }
 
         // --- DEPLOY STAGE ---
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
-                // This is a simple deployment: just runs the .jar file
-                bat 'java -jar target/simple-java-maven-app-1.0-SNAPSHOT.jar &'
-                echo 'Application deployed.'
-            }
-        }
+      stage('Deploy') {
+    steps {
+        echo 'Deploying the application...'
+        // Use 'START' for Windows to run this in a new window
+        // This prevents the Jenkins build from hanging
+        bat 'START java -jar target/simple-java-maven-app-1.0-SNAPSHOT.jar'
+        echo 'Application deployed.'
+    }
+}
     }
 }
